@@ -3,12 +3,13 @@ import './Button.scss'
 import { ButtonProps } from './ButtonType'
 import Loading from '../Loading/Loading'
 
-const Button = (props: ButtonProps) => {
-    const { children, loading, className } = props
-
+/**
+ * Primary UI component for user interaction
+ */
+const Button = ({ label, loading = false, className, disabled = false, ...props }: ButtonProps) => {
     return (
         <button {...props} className={`button-wrapper ${className}`}>
-            {loading ? <Loading /> : children}
+            {loading ? <Loading /> : label}
         </button>
     )
 }

@@ -85,9 +85,8 @@ const ProposeComponent = (props: any) => {
                     disabled={cepError || billerror || loading}
                     loading={loading}
                     className="confirmationButton"
-                >
-                    Enviar proposta
-                </Button>
+                    label="Enviar proposta"
+                />
             </div>
             <span>{errorMessage}</span>
         </div>
