@@ -10,6 +10,9 @@ const meta = {
     // },
 } satisfies Meta<typeof Button>
 
+// More on writing stories with args: https://storybook.js.org/docs/7.0/react/writing-stories/args
+// More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
+
 export default meta
 type Story = StoryObj<typeof meta>
 
