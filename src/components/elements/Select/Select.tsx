@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import './SelectComponent.scss'
+import './Select.scss'
 import { SelectProps } from './types'
-import { InputValuesProps } from '../../../Propose/components/ProposeType'
+import { InputValuesProps } from '../../Propose/components/ProposeType'
 
-const SelectComponent = (props: SelectProps<InputValuesProps>) => {
+const Select = (props: SelectProps<InputValuesProps>) => {
     const { label, onChange, options, selectedValue, name, className } = props
 
     return (
@@ -20,4 +20,4 @@ const SelectComponent = (props: SelectProps<InputValuesProps>) => {
     )
 }
 
-export default SelectComponent
+export default Select

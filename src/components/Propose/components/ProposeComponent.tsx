@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import './ProposeComponent.scss'
-import Input from '../../elements/Input/containers/Input'
 import { InputValuesProps } from './ProposeType'
-import SelectComponent from '../../elements/Select/components/SelectComponent'
-import Button from '../../elements/Button/containers/Button'
 import Header from '../../elements/Header/Header'
 import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../../../utils/utils'
+import Input from '../../elements/Input/Input'
+import Select from '../../elements/Select/Select'
+import Button from '../../elements/Button/Button'
 
 const ProposeComponent = (props: any) => {
     const { submit, respondeValues, errorMessage, loading } = props
@@ -69,7 +69,7 @@ const ProposeComponent = (props: any) => {
                     errorMessage="Valor mínimo de R$ 100,00"
                 />
 
-                <SelectComponent
+                <Select
                     className="select"
                     label="Tipo de estrutura de telhado"
                     name="select"

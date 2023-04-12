@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import './InputComponent.scss'
+import './Input.scss'
 import { InputProps } from './types'
 
-const InputComponent = (props: InputProps) => {
+const Input = (props: InputProps) => {
     const { label, value, onChange, error, errorMessage, className } = props
 
     return (
@@ -14,4 +14,4 @@ const InputComponent = (props: InputProps) => {
     )
 }
 
-export default InputComponent
+export default Input
