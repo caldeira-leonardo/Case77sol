@@ -3,6 +3,8 @@ import './ProposeComponent.scss'
 import Input from '../../elements/Input/containers/Input'
 import { InputValuesType } from './ProposeType'
 import SelectComponent from '../../elements/Select/components/SelectComponent'
+import Button from '../../elements/Button/containers/Button'
+import Header from '../../elements/Header/Header'
 
 const ProposeComponent = (props: any) => {
     const [selectedStructuretype, setselectedStructuretype] = useState<InputValuesType>({
@@ -37,8 +39,8 @@ const ProposeComponent = (props: any) => {
     }
 
     return (
-        <div>
-            <header>Criação de Proposta</header>
+        <div className="propose-wrapper">
+            <Header title="Criação de proposta" />
             <div>
                 <Input
                     error={cepValue.includes('9')}
@@ -67,6 +69,8 @@ const ProposeComponent = (props: any) => {
                     }
                     errorMessage="Deu ruim"
                 />
+
+                <Button>Button</Button>
             </div>
         </div>
     )
