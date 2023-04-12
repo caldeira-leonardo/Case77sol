@@ -41,9 +41,11 @@ const ProposeComponent = (props: any) => {
             <header>Criação de Proposta</header>
             <div>
                 <Input
+                    error={cepValue.includes('9')}
                     label="CEP"
                     value={zipCodeMask(cepValue)}
                     onChange={(item: React.ChangeEvent<HTMLInputElement>) => handleChangeCepValue(item.target.value)}
+                    errorMessage="Deu ruim"
                 />
 
                 <SelectComponent
@@ -57,12 +59,13 @@ const ProposeComponent = (props: any) => {
                 />
 
                 <Input
+                    error={String(electricityBillValue).includes('9')}
                     label="Valor da conta de luz"
-                    type
                     value={electricityBillValue}
                     onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
-                        setElectricityBillValue(Number(item.target.value))
+                        setElectricityBillValue(Number(item.target.value.replace(/\D/g, '')))
                     }
+                    errorMessage="Deu ruim"
                 />
             </div>
         </div>

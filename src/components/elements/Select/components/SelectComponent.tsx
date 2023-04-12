@@ -7,7 +7,7 @@ const SelectComponent = (props: SelectType<InputValuesType>) => {
     const { label, onChange, options, selectedValue, name } = props
 
     return (
-        <>
+        <div className={`select-wrapper`}>
             <label>{label}</label>
             <select name={name} onChange={onChange}>
                 {options.map((item) => (
@@ -16,7 +16,7 @@ const SelectComponent = (props: SelectType<InputValuesType>) => {
                     </option>
                 ))}
             </select>
-        </>
+        </div>
     )
 }
 

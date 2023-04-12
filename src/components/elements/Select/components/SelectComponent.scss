@@ -1,3 +1,37 @@
-* {
-    color: #00f;
+.select-wrapper {
+    margin: 15px 10px;
+    border: 2px solid #eff0f6;
+    background-color: #eff0f6;
+    border-radius: 12px;
+    padding: 5px 20px;
+    color: #1f1f20;
+
+    &.onError {
+        border-color: #cc0000 !important;
+        background-color: #fff2f2 !important;
+        &:focus-within {
+            box-shadow: #ffe2e2 0px 0px 0px 8px;
+        }
+    }
+
+    &:focus-within {
+        border-color: #00f;
+        background-color: #fff;
+        box-shadow: rgb(229, 235, 254) 0px 0px 0px 8px;
+        transition: box-shadow 0.2s ease-in-out 0s;
+    }
+
+    label {
+        color: #6e7191;
+        font-size: 12px;
+    }
+
+    select {
+        background-color: transparent;
+        width: 100%;
+        border: none;
+        color: #1f1f20;
+        outline: none;
+        font-size: 16px;
+    }
 }
