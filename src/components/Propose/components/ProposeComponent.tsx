@@ -1,49 +1,49 @@
-import { useEffect, useMemo, useState } from 'react'
-import './ProposeComponent.scss'
-import { InputValuesProps } from './ProposeType'
-import Header from '../../elements/Header/Header'
-import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../../../utils/utils'
-import Input from '../../elements/Input/Input'
-import Select from '../../elements/Select/Select'
-import Button from '../../elements/Button/Button'
+import React, { useMemo, useState } from 'react';
+import './ProposeComponent.scss';
+import { InputValuesProps } from './ProposeType';
+import Header from '../../elements/Header/Header';
+import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../../../utils/utils';
+import Input from '../../elements/Input/Input';
+import Select from '../../elements/Select/Select';
+import Button from '../../elements/Button/Button';
 
 const ProposeComponent = (props: any) => {
-    const { submit, respondeValues, errorMessage, loading } = props
+    const { submit, respondeValues, errormessage, loading } = props;
 
     const [selectedStructureType, setSelectedStructureType] = useState<InputValuesProps>({
         id: '1',
         name: 'fibrocimento-madeira',
-    })
-    const [cepValue, setCepValue] = useState<string>('')
-    const [electricityBillValue, setElectricityBillValue] = useState<string>('R$ ')
-    const [wasCepFocused, setWasCepFocused] = useState(false)
-    const [wasBillFocused, setWasBillFocused] = useState(false)
+    });
+    const [cepValue, setCepValue] = useState<string>('');
+    const [electricityBillValue, setElectricityBillValue] = useState<string>('R$ ');
+    const [wasCepFocused, setWasCepFocused] = useState(false);
+    const [wasBillFocused, setWasBillFocused] = useState(false);
 
     const handleSelectStructureType = (item: string) => {
-        setSelectedStructureType(esctructureTypes.filter((struc) => struc.id === item)[0])
-    }
+        setSelectedStructureType(esctructureTypes.filter((struc) => struc.id === item)[0]);
+    };
 
     const handleChangeCepValue = (value: string) => {
-        if (value.length > 9) return
-        setCepValue(value)
-    }
+        if (value.length > 9) return;
+        setCepValue(value);
+    };
 
     const handleSubmit = () => {
         const values = {
             selectedStructureType,
             cepValue,
             electricityBillValue: billToNumberFormat(electricityBillValue),
-        }
-        submit(values)
-    }
+        };
+        submit(values);
+    };
 
     const cepError = useMemo(() => {
-        return cepValue.length < 9
-    }, [cepValue])
+        return cepValue.length < 9;
+    }, [cepValue]);
 
     const billerror = useMemo(() => {
-        return billToNumberFormat(electricityBillValue) < 100
-    }, [electricityBillValue])
+        return billToNumberFormat(electricityBillValue) < 100;
+    }, [electricityBillValue]);
 
     return (
         <div className="propose-wrapper">
@@ -55,7 +55,7 @@ const ProposeComponent = (props: any) => {
                     label="CEP"
                     value={zipCodeMask(cepValue)}
                     onChange={(item: React.ChangeEvent<HTMLInputElement>) => handleChangeCepValue(item.target.value)}
-                    errorMessage="Mínimo 8 caracteres"
+                    errormessage="Mínimo 8 caracteres"
                 />
 
                 <Input
@@ -66,7 +66,7 @@ const ProposeComponent = (props: any) => {
                     onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
                         setElectricityBillValue(String(currency(item.target.value)))
                     }
-                    errorMessage="Valor mínimo de R$ 100,00"
+                    errormessage="Valor mínimo de R$ 100,00"
                 />
 
                 <Select
@@ -88,9 +88,9 @@ const ProposeComponent = (props: any) => {
                     label="Enviar proposta"
                 />
             </div>
-            <span>{errorMessage}</span>
+            <span>{errormessage}</span>
         </div>
-    )
-}
+    );
+};
 
-export default ProposeComponent
+export default ProposeComponent;

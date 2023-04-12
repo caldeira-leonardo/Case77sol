@@ -1,10 +1,10 @@
 export interface InputValuesProps {
-    id: string
-    name: string
+    id: string;
+    name: string;
 }
 
 export interface submitValuesProps {
-    selectedStructureType: InputValuesProps
-    cepValue: string
-    electricityBillValue: number
+    selectedStructureType: InputValuesProps;
+    cepValue: string;
+    electricityBillValue: number;
 }

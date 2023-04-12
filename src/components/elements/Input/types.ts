@@ -2,13 +2,13 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     /**
      * Descrição do input
      */
-    label: string
+    label: string;
     /**
      * Erro que irá alterar o estilo do componente
      */
-    error: boolean
+    error?: boolean;
     /**
      * Mensagem de erro para validação
      */
-    errorMessage: string
+    errormessage?: string;
 }
