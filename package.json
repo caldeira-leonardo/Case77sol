@@ -11,8 +11,11 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@types/node-sass": "^4.11.3",
+    "node-sass": "^8.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-tsconfig-paths": "^4.1.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.2",
@@ -26,6 +29,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "prop-types": "^15.8.1",
+    "sass": "^1.62.0",
     "storybook": "^7.0.2",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
