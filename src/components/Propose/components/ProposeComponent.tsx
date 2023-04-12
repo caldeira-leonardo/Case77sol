@@ -5,9 +5,10 @@ import { InputValuesProps } from './ProposeType'
 import SelectComponent from '../../elements/Select/components/SelectComponent'
 import Button from '../../elements/Button/containers/Button'
 import Header from '../../elements/Header/Header'
+import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../../../utils/utils'
 
 const ProposeComponent = (props: any) => {
-    const { submit } = props
+    const { submit, respondeValues, errorMessage, loading } = props
 
     const [selectedStructureType, setSelectedStructureType] = useState<InputValuesProps>({
         id: '1',
@@ -15,15 +16,8 @@ const ProposeComponent = (props: any) => {
     })
     const [cepValue, setCepValue] = useState<string>('')
     const [electricityBillValue, setElectricityBillValue] = useState<string>('R$ ')
-
-    const esctructureTypes: Array<InputValuesProps> = [
-        { id: '1', name: 'fibrocimento-madeira' },
-        { id: '2', name: 'fibrocimento-metalico' },
-        { id: '3', name: 'ceramico' },
-        { id: '4', name: 'metalico' },
-        { id: '5', name: 'laje' },
-        { id: '6', name: 'solo' },
-    ]
+    const [wasCepFocused, setWasCepFocused] = useState(false)
+    const [wasBillFocused, setWasBillFocused] = useState(false)
 
     const handleSelectStructureType = (item: string) => {
         setSelectedStructureType(esctructureTypes.filter((struc) => struc.id === item)[0])
@@ -34,29 +28,13 @@ const ProposeComponent = (props: any) => {
         setCepValue(value)
     }
 
-    const zipCodeMask = (value: string) => {
-        value = value.replace(/\D/g, '')
-        value = value.replace(/(\d{5})(\d)/, '$1-$2')
-        return value
-    }
-
     const handleSubmit = () => {
         const values = {
             selectedStructureType,
             cepValue,
-            electricityBillValue,
+            electricityBillValue: billToNumberFormat(electricityBillValue),
         }
         submit(values)
-    }
-
-    const currency = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value
-
-        value = value.replace(/\D/g, '')
-        value = value.replace(/(\d)(\d{2})$/, '$1,$2')
-        value = value.replace(/(?=(\d{3})+(\D))\B/g, '.')
-
-        return `R$ ${value}`
     }
 
     const cepError = useMemo(() => {
@@ -64,22 +42,35 @@ const ProposeComponent = (props: any) => {
     }, [cepValue])
 
     const billerror = useMemo(() => {
-        return Number(electricityBillValue.replace('R$ ', '').replace('.', '').replace(',', '.')) < 100
+        return billToNumberFormat(electricityBillValue) < 100
     }, [electricityBillValue])
 
     return (
         <div className="propose-wrapper">
             <Header title="Case criação de proposta" />
-            <div>
+            <div className="form">
                 <Input
-                    error={cepError}
+                    error={wasCepFocused ? cepError : false}
+                    onFocus={() => setWasCepFocused(true)}
                     label="CEP"
                     value={zipCodeMask(cepValue)}
                     onChange={(item: React.ChangeEvent<HTMLInputElement>) => handleChangeCepValue(item.target.value)}
                     errorMessage="Mínimo 8 caracteres"
                 />
 
+                <Input
+                    error={wasBillFocused ? billerror : false}
+                    onFocus={() => setWasBillFocused(true)}
+                    label="Valor da conta de luz"
+                    value={electricityBillValue}
+                    onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
+                        setElectricityBillValue(String(currency(item.target.value)))
+                    }
+                    errorMessage="Valor mínimo de R$ 100,00"
+                />
+
                 <SelectComponent
+                    className="select"
                     label="Tipo de estrutura de telhado"
                     name="select"
                     options={esctructureTypes}
@@ -89,20 +80,16 @@ const ProposeComponent = (props: any) => {
                     selectedValue={selectedStructureType}
                 />
 
-                <Input
-                    error={billerror}
-                    label="Valor da conta de luz"
-                    value={electricityBillValue}
-                    onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
-                        setElectricityBillValue(String(currency(item)))
-                    }
-                    errorMessage="Valor mínimo de R$ 100,00"
-                />
-
-                <Button onClick={handleSubmit} disabled={cepError || billerror}>
-                    Button
+                <Button
+                    onClick={handleSubmit}
+                    disabled={cepError || billerror || loading}
+                    loading={loading}
+                    className="confirmationButton"
+                >
+                    Enviar proposta
                 </Button>
             </div>
+            <span>{errorMessage}</span>
         </div>
     )
 }

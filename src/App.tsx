@@ -3,7 +3,11 @@ import './App.scss'
 import Propose from './components/Propose/containers/Propose'
 
 function App() {
-    return <Propose />
+    return (
+        <>
+            <Propose />
+        </>
+    )
 }
 
 export default App

@@ -3,11 +3,20 @@ import './ButtonComponent.scss'
 import { ButtonProps } from './ButtonType'
 
 const ButtonComponent = (props: ButtonProps) => {
-    const { children } = props
+    const { children, loading, className } = props
 
     return (
-        <button {...props} className="button-wrapper">
-            {children}
+        <button {...props} className={`button-wrapper ${className}`}>
+            {loading ? (
+                <div className="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            ) : (
+                children
+            )}
         </button>
     )
 }

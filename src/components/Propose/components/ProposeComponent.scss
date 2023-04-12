@@ -1,3 +1,62 @@
 .propose-wrapper {
-    padding: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form {
+        margin-top: 200px;
+        max-width: 800px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            'cep bill'
+            'select select'
+            'button button';
+
+        gap: 20px;
+
+        .input-wrapper {
+            margin: 10px 0;
+
+            &.onError {
+                margin-bottom: 15px !important;
+            }
+        }
+
+        .select {
+            grid-area: select;
+            margin: 10px 0;
+        }
+
+        .confirmationButton {
+            grid-area: button;
+        }
+    }
+}
+
+@media only screen and (max-width: 864px) {
+    .propose-wrapper {
+        padding: 10px 30px;
+        display: block;
+        .form {
+            max-width: 100%;
+            display: block;
+
+            .input-wrapper {
+                margin: 15px 0;
+
+                &.onError {
+                    margin-bottom: 40px !important;
+                }
+            }
+
+            .select {
+                grid-area: select;
+                margin: 15px 0;
+            }
+        }
+    }
 }

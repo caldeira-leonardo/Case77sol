@@ -4,10 +4,10 @@ import { SelectProps } from './types'
 import { InputValuesProps } from '../../../Propose/components/ProposeType'
 
 const SelectComponent = (props: SelectProps<InputValuesProps>) => {
-    const { label, onChange, options, selectedValue, name } = props
+    const { label, onChange, options, selectedValue, name, className } = props
 
     return (
-        <div className={`select-wrapper`}>
+        <div className={`select-wrapper ${className}`}>
             <label>{label}</label>
             <select name={name} onChange={onChange}>
                 {options.map((item) => (
