@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './SelectComponent.scss'
-import { SelectType } from './types'
-import { InputValuesType } from '../../../Propose/components/ProposeType'
+import { SelectProps } from './types'
+import { InputValuesProps } from '../../../Propose/components/ProposeType'
 
-const SelectComponent = (props: SelectType<InputValuesType>) => {
+const SelectComponent = (props: SelectProps<InputValuesProps>) => {
     const { label, onChange, options, selectedValue, name } = props
 
     return (

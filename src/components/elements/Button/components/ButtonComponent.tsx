@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './ButtonComponent.scss'
-import { ButtonType } from './ButtonType'
+import { ButtonProps } from './ButtonType'
 
-const ButtonComponent = (props: ButtonType) => {
+const ButtonComponent = (props: ButtonProps) => {
     const { children } = props
 
     return (
