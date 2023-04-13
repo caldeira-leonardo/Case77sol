@@ -28,6 +28,9 @@ a pasta services é responsável pelas chamadas que a aplicação faz a API's ex
 STORIES
 pasta padrão criada pelo storybook onde existe um componente de exemplo para a criação das histórias
 
+TESTS
+Contém todos os testes unitários, para rodar os tests basta rodar o comando **npm run test** no terminal
+
 UTILS
 é responsável por guardar funcionalidades que são utilizadas em toda a aplicação com uma funcionalidade expecífica, como por exemplo a funcionalidade **zipCodeMask** que cria uma mascara para
 mostrar o cep da seguinte forma: **000.000.000-00**
