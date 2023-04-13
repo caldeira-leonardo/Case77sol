@@ -48,12 +48,8 @@ const ProposeComponent = (props: any) => {
         return billToNumberFormat(electricityBillValue) < 100;
     }, [electricityBillValue]);
 
-    useEffect(() => {
-        console.log('loading', loading); //TODO remove log
-    }, [loading]);
-
     const render = () => {
-        if (responseValues) return <ProposeData {...{ responseValues }} />;
+        if (responseValues) return <ProposeData {...{ ...responseValues }} />;
 
         return (
             <>
@@ -88,7 +84,6 @@ const ProposeComponent = (props: any) => {
                         onChange={(item: React.ChangeEvent<HTMLSelectElement>) =>
                             handleSelectStructureType(item.target.value)
                         }
-                        selectedValue={selectedStructureType}
                     />
 
                     <Button

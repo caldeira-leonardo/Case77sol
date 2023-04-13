@@ -10,7 +10,6 @@ const Propose = (props: any) => {
     const [errormessage, setErrormessage] = useState('');
     const [loading, setLoading] = useState(false);
     const submit = (values: submitValuesProps) => {
-        console.log('values', values); //TODO remove logs
         setLoading(true);
         api.get(
             `busca-cep?estrutura=${values.selectedStructureType.name}&valor_conta=${values.electricityBillValue}&cep=${values.cepValue}`

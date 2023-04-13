@@ -6,7 +6,6 @@ import { kitProps } from './KitType';
 
 const Kit = (props: kitProps) => {
     const { titulo, url, qtde, valor, valueTotal, custo, id } = props;
-    console.log('props', props); //TODO remove logs
     return (
         <div className="kit-wrapper" key={id}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

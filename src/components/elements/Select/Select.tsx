@@ -1,10 +1,9 @@
 import React from 'react';
 import './Select.scss';
-import { SelectProps } from './types';
-import { InputValuesProps } from '../../Propose/components/ProposeType';
+import { SelectProps } from './SelectTypes';
 
-const Select = (props: SelectProps<InputValuesProps>) => {
-    const { label, onChange, options, selectedValue, name, className } = props;
+const Select = (props: SelectProps) => {
+    const { label, onChange, options, name, className } = props;
 
     return (
         <div className={`select-wrapper ${className}`}>
