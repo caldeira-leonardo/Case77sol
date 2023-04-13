@@ -2,7 +2,7 @@ export interface kitProps {
     /**
      * Id do Produto
      */
-    id: string;
+    id: string | number;
 
     /**
      * Titulo do Produto

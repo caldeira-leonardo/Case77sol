@@ -30,9 +30,11 @@ const ProposeData = ({
                 <Input label="Integradores Regiao" value={integradores_regiao} disabled />
                 <Input label="Integradores Mínimo" value={integradores_minimo} disabled />
                 <Input label="Integradores Maximo" value={integradores_maximo} disabled />
-                <Input label="Economia" value={currency(economia.toFixed(2))} disabled />
+                {economia && <Input label="Economia" value={currency(economia.toFixed(2))} disabled />}
                 <Input label="Potencial" value={potencial} disabled />
-                <Input label="Valor Instalacao" value={currency(valor_instalacao.toFixed(2))} disabled />
+                {valor_instalacao && (
+                    <Input label="Valor Instalacao" value={currency(valor_instalacao.toFixed(2))} disabled />
+                )}
             </div>
             <h2>Parcelamento</h2>
             <div className="parcelamento">

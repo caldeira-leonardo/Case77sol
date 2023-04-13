@@ -5,77 +5,77 @@ export interface ProposeDataProps {
     /**
      * Quantidade de co2
      */
-    co2: number;
+    co2?: number;
 
     /**
      * economia a ser feita
      */
-    economia: number;
+    economia?: number;
 
     /**
      * indiceUnico do item
      */
-    indiceUnico: number;
+    indiceUnico?: number;
 
     /**
      * Máximo de integradores
      */
-    integradores_maximo: number;
+    integradores_maximo?: number;
 
     /**
      * mínimo de integradores
      */
-    integradores_minimo: number;
+    integradores_minimo?: number;
 
     /**
      * integradores região
      */
-    integradores_regiao: number;
+    integradores_regiao?: number;
 
     /**
      * irradiancia máxima
      */
-    irradiancia_maxima: number;
+    irradiancia_maxima?: number;
 
     /**
      * irradiancia mínima
      */
-    irradiancia_minima: number;
+    irradiancia_minima?: number;
 
     /**
      * irradiancia total
      */
-    irradiancia: number;
+    irradiancia?: number;
 
     /**
      * Porcenteagem de performance performance
      */
-    performance: number;
+    performance?: number;
 
     /**
      * Potencia máxima do sistema
      */
-    potenciaSistema: number;
+    potenciaSistema?: number;
 
     /**
      * potencial maximo do sismtema
      */
-    potencial: string;
+    potencial?: string;
 
     /**
      * potencyCC
      */
-    potencyCC: number;
+    potencyCC?: number;
 
     /**
      * Quantiadde de inversores
      */
-    qtdeInversores: number;
+    qtdeInversores?: number;
 
     /**
      * Valor da instalação
      */
-    valor_instalacao: number;
+    valor_instalacao?: number;
 
     /**
      * Kit a ser adquirido

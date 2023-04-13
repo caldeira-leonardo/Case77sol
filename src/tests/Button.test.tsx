@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, expect, test, vi } from 'vitest';
 import Button from '../components/elements/Button/Button';
 
 describe('App', () => {
@@ -21,5 +21,14 @@ describe('App', () => {
         const { getByTestId } = render(<Button label="Botão test" disabled />);
 
         expect(getByTestId('button')).toBeDisabled();
+    });
+
+    test('Should be able to click in the button', () => {
+        const handleClick = vi.fn();
+
+        const { getByTestId } = render(<Button label="Botão test" onClick={handleClick} />);
+        fireEvent.click(getByTestId('button'));
+
+        expect(handleClick).toHaveBeenCalledOnce();
     });
 });
