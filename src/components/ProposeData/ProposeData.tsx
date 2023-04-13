@@ -5,6 +5,7 @@ import Parcelamento from '../elements/Parcelamento/Parcelamento';
 import Kit from '../elements/Kit/Kit';
 import { currency } from '../../utils/utils';
 import { kitProps } from '../elements/Kit/KitType';
+import { ParcelamentoProps } from '../elements/Parcelamento/ParcelamentoType';
 
 const ProposeData = (props: any) => {
     const { responseValues } = props;
@@ -24,8 +25,8 @@ const ProposeData = (props: any) => {
             </div>
             <h2>Parcelamento</h2>
             <div className="parcelamento">
-                {responseValues.parcelamento.map((parcelamento: any, i: string) => (
-                    <Parcelamento {...{ parcelamento }} key={i} />
+                {responseValues.parcelamento.map((parcelamento: ParcelamentoProps, i: string) => (
+                    <Parcelamento {...{ ...parcelamento }} key={i} />
                 ))}
             </div>
             <h2>Itens a serem instalados</h2>
