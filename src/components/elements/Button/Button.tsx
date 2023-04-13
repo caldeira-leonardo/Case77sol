@@ -8,7 +8,7 @@ import Loading from '../Loading/Loading';
  */
 const Button = ({ label, loading = false, className, disabled = false, ...props }: ButtonProps) => {
     return (
-        <button {...props} className={`button-wrapper ${className}`} disabled={disabled}>
+        <button {...props} className={`button-wrapper ${className}`} disabled={disabled} data-testid="button">
             {loading ? <Loading /> : label}
         </button>
     );

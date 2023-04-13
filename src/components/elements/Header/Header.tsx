@@ -5,7 +5,7 @@ import { HeaderProps } from './HeaderType';
 
 const Header = ({ title }: HeaderProps) => {
     return (
-        <header className="header-wrapper">
+        <header className="header-wrapper" data-testid="header">
             <h2>{title}</h2>
             <img src={Logo} alt="77Sol" />
         </header>
