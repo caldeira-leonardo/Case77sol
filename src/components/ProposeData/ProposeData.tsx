@@ -4,6 +4,7 @@ import Input from '../elements/Input/Input';
 import Parcelamento from '../elements/Parcelamento/Parcelamento';
 import Kit from '../elements/Kit/Kit';
 import { currency } from '../../utils/utils';
+import { kitProps } from '../elements/Kit/KitType';
 
 const ProposeData = (props: any) => {
     const { responseValues } = props;
@@ -29,8 +30,8 @@ const ProposeData = (props: any) => {
             </div>
             <h2>Itens a serem instalados</h2>
             <div className="propose-kit">
-                {responseValues.kit.map((kit: any, i: string) => (
-                    <Kit {...{ kit }} key={i} />
+                {responseValues.kit.map((kit: kitProps) => (
+                    <Kit {...{ ...kit }} key={kit.id} />
                 ))}
             </div>
         </div>
