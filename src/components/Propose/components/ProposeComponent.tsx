@@ -1,17 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './ProposeComponent.scss';
-import { InputValuesProps } from './ProposeType';
 import Header from '../../elements/Header/Header';
 import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../../../utils/utils';
 import Input from '../../elements/Input/Input';
 import Select from '../../elements/Select/Select';
 import Button from '../../elements/Button/Button';
 import ProposeData from '../../ProposeData/ProposeData';
+import { SelectValuesProps } from '../../elements/Select/SelectTypes';
+import { ProposeProps, submitValuesProps } from './ProposeType';
 
-const ProposeComponent = (props: any) => {
-    const { submit, responseValues, errormessage, loading } = props;
-
-    const [selectedStructureType, setSelectedStructureType] = useState<InputValuesProps>({
+const ProposeComponent = ({ submit, responseValues, errormessage, loading }: ProposeProps) => {
+    const [selectedStructureType, setSelectedStructureType] = useState<SelectValuesProps>({
         id: '1',
         name: 'fibrocimento-madeira',
     });
@@ -30,11 +29,12 @@ const ProposeComponent = (props: any) => {
     };
 
     const handleSubmit = () => {
-        const values = {
+        const values: submitValuesProps = {
             selectedStructureType,
             cepValue,
             electricityBillValue: billToNumberFormat(electricityBillValue),
         };
+
         submit(values);
     };
 
