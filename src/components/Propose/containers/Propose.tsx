@@ -6,7 +6,7 @@ import api from '../../../services/api';
 // const api = 'https://api2.77sol.com.br/busca-cep?estrutura=fibrocimento-metalico&valor_conta=2900&cep=06543-001'
 
 const Propose = (props: any) => {
-    const [respondeValues, setRespondeValues] = useState<any>(null);
+    const [responseValues, setResponseValues] = useState<any>(null);
     const [errormessage, setErrormessage] = useState('');
     const [loading, setLoading] = useState(false);
     const submit = (values: submitValuesProps) => {
@@ -15,7 +15,7 @@ const Propose = (props: any) => {
         api.get(
             `busca-cep?estrutura=${values.selectedStructureType.name}&valor_conta=${values.electricityBillValue}&cep=${values.cepValue}`
         )
-            .then((res) => setRespondeValues(res))
+            .then((res) => setResponseValues(res.data))
             .catch((err) => {
                 console.log(err);
                 setErrormessage(err.message);
@@ -23,7 +23,7 @@ const Propose = (props: any) => {
             .finally(() => setLoading(false));
     };
 
-    return <ProposeComponent {...props} {...{ submit, respondeValues, errormessage, loading }} />;
+    return <ProposeComponent {...props} {...{ submit, responseValues, errormessage, loading }} />;
 };
 
 export default Propose;

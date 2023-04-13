@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './ProposeComponent.scss';
 import { InputValuesProps } from './ProposeType';
 import Header from '../../elements/Header/Header';
@@ -6,9 +6,10 @@ import { billToNumberFormat, currency, esctructureTypes, zipCodeMask } from '../
 import Input from '../../elements/Input/Input';
 import Select from '../../elements/Select/Select';
 import Button from '../../elements/Button/Button';
+import ProposeData from '../../ProposeData/ProposeData';
 
 const ProposeComponent = (props: any) => {
-    const { submit, respondeValues, errormessage, loading } = props;
+    const { submit, responseValues, errormessage, loading } = props;
 
     const [selectedStructureType, setSelectedStructureType] = useState<InputValuesProps>({
         id: '1',
@@ -37,6 +38,8 @@ const ProposeComponent = (props: any) => {
         submit(values);
     };
 
+    const headerTitle = responseValues ? 'Case Proposta' : 'Case criação de proposta';
+
     const cepError = useMemo(() => {
         return cepValue.length < 9;
     }, [cepValue]);
@@ -45,50 +48,66 @@ const ProposeComponent = (props: any) => {
         return billToNumberFormat(electricityBillValue) < 100;
     }, [electricityBillValue]);
 
+    useEffect(() => {
+        console.log('loading', loading); //TODO remove log
+    }, [loading]);
+
+    const render = () => {
+        if (responseValues) return <ProposeData {...{ responseValues }} />;
+
+        return (
+            <>
+                <div className="form">
+                    <Input
+                        error={wasCepFocused ? cepError : false}
+                        onFocus={() => setWasCepFocused(true)}
+                        label="CEP"
+                        value={zipCodeMask(cepValue)}
+                        onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
+                            handleChangeCepValue(item.target.value)
+                        }
+                        errormessage="Mínimo 8 caracteres"
+                    />
+
+                    <Input
+                        error={wasBillFocused ? billerror : false}
+                        onFocus={() => setWasBillFocused(true)}
+                        label="Valor da conta de luz"
+                        value={electricityBillValue}
+                        onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
+                            setElectricityBillValue(String(currency(item.target.value)))
+                        }
+                        errormessage="Valor mínimo de R$ 100,00"
+                    />
+
+                    <Select
+                        className="select"
+                        label="Tipo de estrutura de telhado"
+                        name="select"
+                        options={esctructureTypes}
+                        onChange={(item: React.ChangeEvent<HTMLSelectElement>) =>
+                            handleSelectStructureType(item.target.value)
+                        }
+                        selectedValue={selectedStructureType}
+                    />
+
+                    <Button
+                        onClick={handleSubmit}
+                        disabled={cepError || billerror || loading}
+                        loading={loading}
+                        className="confirmationButton"
+                        label="Enviar proposta"
+                    />
+                </div>
+                <span>{errormessage}</span>
+            </>
+        );
+    };
+
     return (
         <div className="propose-wrapper">
-            <Header title="Case criação de proposta" />
-            <div className="form">
-                <Input
-                    error={wasCepFocused ? cepError : false}
-                    onFocus={() => setWasCepFocused(true)}
-                    label="CEP"
-                    value={zipCodeMask(cepValue)}
-                    onChange={(item: React.ChangeEvent<HTMLInputElement>) => handleChangeCepValue(item.target.value)}
-                    errormessage="Mínimo 8 caracteres"
-                />
-
-                <Input
-                    error={wasBillFocused ? billerror : false}
-                    onFocus={() => setWasBillFocused(true)}
-                    label="Valor da conta de luz"
-                    value={electricityBillValue}
-                    onChange={(item: React.ChangeEvent<HTMLInputElement>) =>
-                        setElectricityBillValue(String(currency(item.target.value)))
-                    }
-                    errormessage="Valor mínimo de R$ 100,00"
-                />
-
-                <Select
-                    className="select"
-                    label="Tipo de estrutura de telhado"
-                    name="select"
-                    options={esctructureTypes}
-                    onChange={(item: React.ChangeEvent<HTMLSelectElement>) =>
-                        handleSelectStructureType(item.target.value)
-                    }
-                    selectedValue={selectedStructureType}
-                />
-
-                <Button
-                    onClick={handleSubmit}
-                    disabled={cepError || billerror || loading}
-                    loading={loading}
-                    className="confirmationButton"
-                    label="Enviar proposta"
-                />
-            </div>
-            <span>{errormessage}</span>
+            <Header title={headerTitle} />
+            {render()}
         </div>
     );
 };

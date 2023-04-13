@@ -1,0 +1,28 @@
+.kit-wrapper {
+    display: flex;
+    justify-content: center;
+
+    img {
+        height: 300px;
+    }
+
+    .infos {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .kit-wrapper {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .kit-wrapper {
+        img {
+            height: 150px;
+        }
+    }
+}
