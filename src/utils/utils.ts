@@ -1,4 +1,4 @@
-import { InputValuesProps } from '../components/Propose/components/ProposeType';
+import { SelectValuesProps } from '../components/elements/Select/SelectTypes';
 
 export const zipCodeMask = (value: string) => {
     value = value.replace(/\D/g, '');
@@ -20,7 +20,7 @@ export const currency = (unformatedValue: string) => {
     return `R$ ${value}`;
 };
 
-export const esctructureTypes: Array<InputValuesProps> = [
+export const esctructureTypes: Array<SelectValuesProps> = [
     { id: '1', name: 'fibrocimento-madeira' },
     { id: '2', name: 'fibrocimento-metalico' },
     { id: '3', name: 'ceramico' },
